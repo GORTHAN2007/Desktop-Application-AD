@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const { get } = require('http');
 
 const questionsFile = path.join(__dirname,"/data/questions.json");
 const sessionFile = path.join(__dirname, "data/session.json");
@@ -29,6 +28,11 @@ function getSessions(){
         return {};
     };
 };
+
+function saveSessions(sessions){
+    fs.writeFileSync(sessionFile, JSON.stringify(sessions, null, 2));
+};
+
 
 
 app.listen(PORT, ()=>{
