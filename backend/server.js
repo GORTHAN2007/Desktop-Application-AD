@@ -79,6 +79,54 @@ app.get('/exam/mcq', (req,res)=>{
     res.json({success: true, questions : questionsWithoutAnswers});
 });
 
+app.post('/exam/answer', (req,res)=>{
+    const {sessionId, questionId, selectedOption} = req.body;
+    const sessions = getSessions();
+    const session = sessions[sessionId];
+
+    if(!session || session.status !== 'in-progress'){
+        return res.status(400).json({success: false, message: 'Invalid or Clodes session.'});
+    };
+
+    const questions = getQuestions();
+    const question = questions.find(q => q.id === Number(questionId));
+    if(!question){
+        return res.status(404).json({success: false, message: 'Question not found.'});
+    };
+
+    session.answers[questionId] = {
+        selectedOption,
+        isCorrect : question.correctAnswer === selectedOption,
+        answeredAt: Date.now()
+    };
+    saveSessions(sessions);
+    res.json({success: true, questionId});
+});
+
+app.post('/exam/submit', (req,res)=>{
+    const {sessionId} = req.body;
+    const sessions = getSessions();
+    const session = sessions[sessionId];
+
+    if(!session){
+        return res.status(404).json({success: false, message: 'Session not found.'});
+    };
+    const question = getQuestions();
+    const totalQuestions = questions.length;
+    let correctCount = 0;
+    let attemptedCount = 0;
+
+    questions.forEach(q => {
+        const ans = session.answers[q.id];
+        if(ans && ans.selectedOption){
+            attemptedCount++;
+            if(ans.isCorrect){
+                correctCount++;
+            };
+        };
+    });
+});
+
 app.listen(PORT, ()=>{
     console.log(`Athena backend running on http://localhost:${PORT}`);
 });
