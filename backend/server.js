@@ -111,7 +111,7 @@ app.post('/exam/submit', (req,res)=>{
     if(!session){
         return res.status(404).json({success: false, message: 'Session not found.'});
     };
-    const question = getQuestions();
+    const questions = getQuestions();
     const totalQuestions = questions.length;
     let correctCount = 0;
     let attemptedCount = 0;

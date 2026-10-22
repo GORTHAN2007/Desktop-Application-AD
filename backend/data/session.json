@@ -1,0 +1,21 @@
+{
+  "session_1792669854971": {
+    "sessionId": "session_1792669854971",
+    "candidateName": "Arju Srivastav",
+    "candidateId": "CAND-101",
+    "durationMinutes": 20,
+    "startTime": 1792669854971,
+    "endTime": 1792671054971,
+    "status": "submitted",
+    "answers": {},
+    "violations": [],
+    "score": {
+      "totalQuestions": 5,
+      "attemptedCount": 0,
+      "correctCount": 0,
+      "wrongCount": 0,
+      "percentage": 0
+    },
+    "submittedAt": 1792669920320
+  }
+}
