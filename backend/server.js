@@ -7,7 +7,7 @@ const questionsFile = path.join(__dirname,"/data/questions.json");
 const sessionFile = path.join(__dirname, "data/session.json");
 
 const app = express();
-const PORT = 5000;
+const PORT = 5002;
 app.use(cors());
 app.use(express.json());
 
@@ -69,6 +69,15 @@ app.post('/exam/start', (req,res)=>{
     });
 });
 
+app.get('/exam/mcq', (req,res)=>{
+    const questions = getQuestions();
+    const questionsWithoutAnswers = questions.map(({id, question, options})=>({
+        id,
+        question,
+        options
+    }));
+    res.json({success: true, questions : questionsWithoutAnswers});
+});
 
 app.listen(PORT, ()=>{
     console.log(`Athena backend running on http://localhost:${PORT}`);
