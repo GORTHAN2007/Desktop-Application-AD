@@ -125,6 +125,21 @@ app.post('/exam/submit', (req,res)=>{
             };
         };
     });
+    const wrongCount = attemptedCount - correctCount;
+    const percentage = totalQuestions > 0 ? Math.round((correctCount/totalQuestions)*100) : 0;
+
+    session.status = 'submitted';
+    session.submittedAt = Date.now();
+    session.score = {
+        totalQuestions,
+        attemptedCount,
+        correctCount,
+        wrongCount,
+        percentage
+    };
+
+    saveSessions(sessions);
+    res.json({success: true, score: session.score});
 });
 
 app.listen(PORT, ()=>{
