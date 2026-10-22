@@ -7,7 +7,7 @@ const questionsFile = path.join(__dirname,"/data/questions.json");
 const sessionFile = path.join(__dirname, "data/session.json");
 
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
@@ -33,6 +33,41 @@ function saveSessions(sessions){
     fs.writeFileSync(sessionFile, JSON.stringify(sessions, null, 2));
 };
 
+
+
+app.post('/exam/start', (req,res)=>{
+    const {candidateName = 'Candidate', candidateId = 'CAND-01', durationMinutes = 15} = req.body;
+    const questions = getQuestions();
+    const sessionId = `session_${Date.now()}`;
+    const startTime = Date.now();
+    const endTime = startTime + durationMinutes * 60 * 1000;
+
+    const sessions = getSessions();
+    sessions[sessionId] = {
+        sessionId,
+        candidateName,
+        candidateId,
+        durationMinutes,
+        startTime,
+        endTime,
+        status: 'in-progress',
+        answers: {},
+        violations : [],
+        score: null
+    };
+    saveSessions(sessions);
+
+    res.json({
+        success: true,
+        sessionId,
+        candidateName,
+        candidateId,
+        durationMinutes,
+        startTime,
+        endTime,
+        totalQuestions: questions.length
+    });
+});
 
 
 app.listen(PORT, ()=>{
