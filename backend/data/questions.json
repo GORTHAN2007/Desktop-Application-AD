@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "question": "What is the primary role of the Electron preload script?",
+    "options": [
+      "To render React components directly",
+      "To securely expose Node.js APIs to the renderer via contextBridge",
+      "To compile C++ native modules at runtime",
+      "To replace the browser window manager"
+    ],
+    "correctAnswer": "To securely expose Node.js APIs to the renderer via contextBridge"
+  },
+  {
+    "id": 2,
+    "question": "Which webContents event allows intercepting and suppressing keyboard shortcuts like DevTools or Copy?",
+    "options": [
+      "before-input-event",
+      "keyboard-press",
+      "key-intercept",
+      "prevent-default-event"
+    ],
+    "correctAnswer": "before-input-event"
+  },
+  {
+    "id": 3,
+    "question": "How does desktopCapturer capture screens in modern Electron?",
+    "options": [
+      "desktopCapturer.getSources({ types: ['screen'] })",
+      "navigator.mediaDevices.getDisplayMedia() only",
+      "screen.captureAllDisplays()",
+      "window.captureNativeScreen()"
+    ],
+    "correctAnswer": "desktopCapturer.getSources({ types: ['screen'] })"
+  },
+  {
+    "id": 4,
+    "question": "Why should correct answers be evaluated on the server rather than the frontend in proctored exams?",
+    "options": [
+      "Because servers have more RAM",
+      "To prevent candidates from inspecting network responses or client memory to cheat",
+      "React cannot compare strings securely",
+      "Because Electron disallows conditional logic in the renderer"
+    ],
+    "correctAnswer": "To prevent candidates from inspecting network responses or client memory to cheat"
+  },
+  {
+    "id": 5,
+    "question": "Which Electron BrowserWindow setting disables standard window framing to facilitate custom kiosk mode?",
+    "options": [
+      "frame: false",
+      "borderless: true",
+      "titleBarStyle: 'none'",
+      "kioskModeOnly: true"
+    ],
+    "correctAnswer": "frame: false"
+  }
+]
