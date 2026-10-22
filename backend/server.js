@@ -14,13 +14,21 @@ app.use(express.json());
 
 function getQuestions(){
     try{
-        const data = fs.readFileSync(questionsFile, 'utf-8');
-        return JSON.parse(data);
+        const questions = fs.readFileSync(questionsFile, 'utf-8');
+        return JSON.parse(questions);
     }catch(err){
         return [];
     };
 };
 
+function getSessions(){
+    try{
+        const sessions = fs.readFileSync(sessionFile, "utf-8");
+        return JSON.parse(sessions);
+    }catch(err){
+        return {};
+    };
+};
 
 
 app.listen(PORT, ()=>{
