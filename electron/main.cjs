@@ -2,6 +2,7 @@ const { BrowserWindow, app, ipcMain, dialog } = require("electron");
 const path = require("path");
 
 let win = null;
+let end_time = null;
 
 function createWindow() {
   win = new BrowserWindow({
@@ -50,6 +51,16 @@ ipcMain.handle("show-rules-dialog", async () => {
     cancelId: 1,
   });
   return result.response === 0;
+});
+
+ipcMain.handle("start-test", () => {
+  end_time = Date.now() + 60 * 60 * 1000; // 60 minutes in ms
+  return end_time;
+});
+
+ipcMain.handle("get-time", () => {
+  if (!end_time) return 0;
+  return Math.max(0, end_time - Date.now());
 });
 
 app.whenReady().then(() => {

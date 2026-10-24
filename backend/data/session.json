@@ -17,5 +17,50 @@
       "percentage": 0
     },
     "submittedAt": 1792669920320
+  },
+  "session_1792869016694": {
+    "sessionId": "session_1792869016694",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792869016694,
+    "endTime": 1792872616694,
+    "status": "submitted",
+    "answers": {
+      "1": {
+        "selectedOption": "To render React components directly",
+        "isCorrect": false,
+        "answeredAt": 1792869019556
+      },
+      "2": {
+        "selectedOption": "before-input-event",
+        "isCorrect": true,
+        "answeredAt": 1792869021075
+      },
+      "3": {
+        "selectedOption": "screen.captureAllDisplays()",
+        "isCorrect": false,
+        "answeredAt": 1792869022403
+      },
+      "4": {
+        "selectedOption": "React cannot compare strings securely",
+        "isCorrect": false,
+        "answeredAt": 1792869023985
+      },
+      "5": {
+        "selectedOption": "borderless: true",
+        "isCorrect": false,
+        "answeredAt": 1792869025472
+      }
+    },
+    "violations": [],
+    "score": {
+      "totalQuestions": 5,
+      "attemptedCount": 5,
+      "correctCount": 1,
+      "wrongCount": 4,
+      "percentage": 20
+    },
+    "submittedAt": 1792869025478
   }
 }
