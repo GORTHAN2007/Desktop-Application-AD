@@ -129,7 +129,3 @@ npm start
 4. **Input Interception**: Low-level `before-input-event` listener prevents DevTools access, copy-pasting, and saving page source.
 
 ---
-
-## 📄 License
-
-This project is licensed under the ISC License.
