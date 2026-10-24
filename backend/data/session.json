@@ -62,5 +62,65 @@
       "percentage": 20
     },
     "submittedAt": 1792869025478
+  },
+  "session_1792869172414": {
+    "sessionId": "session_1792869172414",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792869172414,
+    "endTime": 1792872772414,
+    "status": "in-progress",
+    "answers": {},
+    "violations": [],
+    "score": null
+  },
+  "session_1792869191308": {
+    "sessionId": "session_1792869191308",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792869191308,
+    "endTime": 1792872791308,
+    "status": "in-progress",
+    "answers": {},
+    "violations": [],
+    "score": null
+  },
+  "session_1792869311244": {
+    "sessionId": "session_1792869311244",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792869311244,
+    "endTime": 1792872911244,
+    "status": "in-progress",
+    "answers": {},
+    "violations": [],
+    "score": null
+  },
+  "session_1792869402253": {
+    "sessionId": "session_1792869402253",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792869402253,
+    "endTime": 1792873002253,
+    "status": "in-progress",
+    "answers": {},
+    "violations": [],
+    "score": null
+  },
+  "session_1792869413494": {
+    "sessionId": "session_1792869413494",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792869413494,
+    "endTime": 1792873013494,
+    "status": "in-progress",
+    "answers": {},
+    "violations": [],
+    "score": null
   }
 }

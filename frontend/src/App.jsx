@@ -26,7 +26,7 @@ function App() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [result, setResult] = useState(null);
-  const [timeDisplay, setTimeDisplay] = useState("HH:MM:SS");
+  const [timeDisplay, setTimeDisplay] = useState("01:00:00");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -345,7 +345,7 @@ function App() {
                 {loading ? "Starting..." : "Go To Test"}
               </button>
             </div>
-            <div className="time-left">Time Left : HH:MM:SS</div>
+            <div className="time-left">Time Left : 01:00:00</div>
           </div>
         </>
       )}
