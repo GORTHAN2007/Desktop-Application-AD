@@ -281,5 +281,50 @@
       "percentage": 60
     },
     "submittedAt": 1792871814788
+  },
+  "session_1792875348600": {
+    "sessionId": "session_1792875348600",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792875348600,
+    "endTime": 1792878948600,
+    "status": "submitted",
+    "answers": {
+      "1": {
+        "selectedOption": "To securely expose Node.js APIs to the renderer via contextBridge",
+        "isCorrect": true,
+        "answeredAt": 1792875350812
+      },
+      "2": {
+        "selectedOption": "keyboard-press",
+        "isCorrect": false,
+        "answeredAt": 1792875352243
+      },
+      "3": {
+        "selectedOption": "navigator.mediaDevices.getDisplayMedia() only",
+        "isCorrect": false,
+        "answeredAt": 1792875354050
+      },
+      "4": {
+        "selectedOption": "To prevent candidates from inspecting network responses or client memory to cheat",
+        "isCorrect": true,
+        "answeredAt": 1792875355844
+      },
+      "5": {
+        "selectedOption": "borderless: true",
+        "isCorrect": false,
+        "answeredAt": 1792875357426
+      }
+    },
+    "violations": [],
+    "score": {
+      "totalQuestions": 5,
+      "attemptedCount": 5,
+      "correctCount": 2,
+      "wrongCount": 3,
+      "percentage": 40
+    },
+    "submittedAt": 1792875357430
   }
 }
