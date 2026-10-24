@@ -122,5 +122,74 @@
     "answers": {},
     "violations": [],
     "score": null
+  },
+  "session_1792870137479": {
+    "sessionId": "session_1792870137479",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792870137479,
+    "endTime": 1792873737479,
+    "status": "submitted",
+    "answers": {
+      "1": {
+        "selectedOption": "To securely expose Node.js APIs to the renderer via contextBridge",
+        "isCorrect": true,
+        "answeredAt": 1792870149762
+      },
+      "2": {
+        "selectedOption": "key-intercept",
+        "isCorrect": false,
+        "answeredAt": 1792870154434
+      },
+      "3": {
+        "selectedOption": "desktopCapturer.getSources({ types: ['screen'] })",
+        "isCorrect": true,
+        "answeredAt": 1792870157942
+      },
+      "4": {
+        "selectedOption": "To prevent candidates from inspecting network responses or client memory to cheat",
+        "isCorrect": true,
+        "answeredAt": 1792870159536
+      },
+      "5": {
+        "selectedOption": "titleBarStyle: 'none'",
+        "isCorrect": false,
+        "answeredAt": 1792870161305
+      }
+    },
+    "violations": [],
+    "score": {
+      "totalQuestions": 5,
+      "attemptedCount": 5,
+      "correctCount": 3,
+      "wrongCount": 2,
+      "percentage": 60
+    },
+    "submittedAt": 1792870161310
+  },
+  "session_1792870792085": {
+    "sessionId": "session_1792870792085",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792870792085,
+    "endTime": 1792874392085,
+    "status": "in-progress",
+    "answers": {},
+    "violations": [],
+    "score": null
+  },
+  "session_1792870802960": {
+    "sessionId": "session_1792870802960",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792870802960,
+    "endTime": 1792874402960,
+    "status": "in-progress",
+    "answers": {},
+    "violations": [],
+    "score": null
   }
 }

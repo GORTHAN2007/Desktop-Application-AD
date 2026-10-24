@@ -77,6 +77,35 @@ function App() {
     return () => clearInterval(timerIntervalRef.current);
   }, [started, handleSubmit]);
 
+  // Periodic Proctoring Loop: captures webcam photo & screenshot every 5000ms while exam is active
+  useEffect(() => {
+    if (!started) return;
+
+    const proctorInterval = setInterval(async () => {
+      // 1. Capture webcam photo
+      if (imageCaptureRef.current && window.electronAPI?.savePhoto) {
+        try {
+          const blob = await imageCaptureRef.current.takePhoto();
+          const buffer = await blob.arrayBuffer();
+          await window.electronAPI.savePhoto(buffer);
+        } catch (err) {
+          console.error("Webcam photo capture error:", err);
+        }
+      }
+
+      // 2. Capture desktop screenshot
+      if (window.electronAPI?.captureScreen) {
+        try {
+          await window.electronAPI.captureScreen();
+        } catch (err) {
+          console.error("Screenshot capture error:", err);
+        }
+      }
+    }, 5000);
+
+    return () => clearInterval(proctorInterval);
+  }, [started]);
+
   const getCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
