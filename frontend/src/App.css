@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   padding: 40px 20px;
+  position: relative;
 }
 
 .header-section {
@@ -105,6 +106,25 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
+/* Video Preview */
+.hidden-video {
+  display: none;
+}
+
+.video-preview {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 180px;
+  height: 115px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 2px solid #111827;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  background-color: #000;
+}
+
 /* Button Variants */
 .btn-dark {
   background-color: #111827;
@@ -121,6 +141,11 @@
 
 .btn-dark:hover {
   background-color: #1f2937;
+}
+
+.btn-dark:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .btn-outline {

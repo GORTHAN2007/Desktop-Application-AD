@@ -1,9 +1,60 @@
-import React from 'react';
-import './App.css';
+import React, { useState, useRef } from "react";
+import "./App.css";
 
 function App() {
+  const [cameraReady, setCameraReady] = useState(false);
+  const [fullscreenReady, setFullscreenReady] = useState(false);
+
+  const videoRef = useRef(null);
+  const imageCaptureRef = useRef(null);
+
+  const getCamera = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      if (videoRef.current) {
+        videoRef.current.srcObject = stream;
+        videoRef.current.play();
+      }
+
+      const track = stream.getVideoTracks()[0];
+      if (window.ImageCapture && track) {
+        imageCaptureRef.current = new ImageCapture(track);
+      }
+
+      setCameraReady(true);
+    } catch (err) {
+      console.error("Camera access error:", err);
+      alert("Failed to get camera access. Please check device permissions.");
+    }
+  };
+
+  const setFullScreen = async () => {
+    try {
+      if (window.electronAPI?.setFullScreen) {
+        await window.electronAPI.setFullScreen();
+      } else {
+        // Fallback for browser testing
+        if (!document.fullscreenElement) {
+          await document.documentElement.requestFullscreen();
+        }
+      }
+      setFullscreenReady(true);
+    } catch (err) {
+      console.error("Fullscreen error:", err);
+    }
+  };
+
   return (
     <div className="page-container">
+      {/* Webcam element */}
+      <video
+        ref={videoRef}
+        autoPlay
+        playsInline
+        muted
+        className={cameraReady ? "video-preview" : "hidden-video"}
+      />
+
       {/* Header */}
       <div className="header-section">
         <h1>Hello Student!</h1>
@@ -37,8 +88,13 @@ function App() {
               <p>Kindly configure Camera to attempt quiz/contests.</p>
             </div>
           </div>
-          <button type="button" className="btn-dark">
-            Get Camera Access
+          <button
+            type="button"
+            className="btn-dark"
+            onClick={getCamera}
+            disabled={cameraReady}
+          >
+            {cameraReady ? "Camera Configured" : "Get Camera Access"}
           </button>
         </div>
 
@@ -66,8 +122,13 @@ function App() {
               <p>Kindly close all tabs and switch to full screen.</p>
             </div>
           </div>
-          <button type="button" className="btn-dark">
-            Switch to FullScreen
+          <button
+            type="button"
+            className="btn-dark"
+            onClick={setFullScreen}
+            disabled={fullscreenReady}
+          >
+            {fullscreenReady ? "Full Screen Active" : "Switch to FullScreen"}
           </button>
         </div>
       </div>
@@ -75,7 +136,11 @@ function App() {
       {/* Bottom Actions */}
       <div className="bottom-actions">
         <div className="action-row">
-          <button type="button" className="btn-dark">
+          <button
+            type="button"
+            className="btn-dark"
+            disabled={!cameraReady || !fullscreenReady}
+          >
             Go To Test
           </button>
         </div>
