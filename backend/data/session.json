@@ -191,5 +191,95 @@
     "answers": {},
     "violations": [],
     "score": null
+  },
+  "session_1792871744982": {
+    "sessionId": "session_1792871744982",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792871744982,
+    "endTime": 1792875344982,
+    "status": "submitted",
+    "answers": {
+      "1": {
+        "selectedOption": "To securely expose Node.js APIs to the renderer via contextBridge",
+        "isCorrect": true,
+        "answeredAt": 1792871747072
+      },
+      "2": {
+        "selectedOption": "keyboard-press",
+        "isCorrect": false,
+        "answeredAt": 1792871748586
+      },
+      "3": {
+        "selectedOption": "navigator.mediaDevices.getDisplayMedia() only",
+        "isCorrect": false,
+        "answeredAt": 1792871749986
+      },
+      "4": {
+        "selectedOption": "To prevent candidates from inspecting network responses or client memory to cheat",
+        "isCorrect": true,
+        "answeredAt": 1792871751518
+      },
+      "5": {
+        "selectedOption": "borderless: true",
+        "isCorrect": false,
+        "answeredAt": 1792871753180
+      }
+    },
+    "violations": [],
+    "score": {
+      "totalQuestions": 5,
+      "attemptedCount": 5,
+      "correctCount": 2,
+      "wrongCount": 3,
+      "percentage": 40
+    },
+    "submittedAt": 1792871753182
+  },
+  "session_1792871807571": {
+    "sessionId": "session_1792871807571",
+    "candidateName": "Test User",
+    "candidateId": "student-1",
+    "durationMinutes": 60,
+    "startTime": 1792871807571,
+    "endTime": 1792875407571,
+    "status": "submitted",
+    "answers": {
+      "1": {
+        "selectedOption": "To render React components directly",
+        "isCorrect": false,
+        "answeredAt": 1792871808897
+      },
+      "2": {
+        "selectedOption": "before-input-event",
+        "isCorrect": true,
+        "answeredAt": 1792871810054
+      },
+      "3": {
+        "selectedOption": "desktopCapturer.getSources({ types: ['screen'] })",
+        "isCorrect": true,
+        "answeredAt": 1792871811763
+      },
+      "4": {
+        "selectedOption": "Because servers have more RAM",
+        "isCorrect": false,
+        "answeredAt": 1792871813363
+      },
+      "5": {
+        "selectedOption": "frame: false",
+        "isCorrect": true,
+        "answeredAt": 1792871814783
+      }
+    },
+    "violations": [],
+    "score": {
+      "totalQuestions": 5,
+      "attemptedCount": 5,
+      "correctCount": 3,
+      "wrongCount": 2,
+      "percentage": 60
+    },
+    "submittedAt": 1792871814788
   }
 }
