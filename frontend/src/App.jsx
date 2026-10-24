@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import "./App.css";
 
 const BASE_URL = "http://localhost:5002";
@@ -34,6 +34,31 @@ function App() {
   const imageCaptureRef = useRef(null);
   const timerIntervalRef = useRef(null);
 
+  const handleSubmit = useCallback(async (isTimeout = false) => {
+    clearInterval(timerIntervalRef.current);
+    if (isTimeout) {
+      alert("Time is up! Your exam is being automatically submitted.");
+    }
+    setLoading(true);
+    try {
+      const submitRes = await fetch(`${BASE_URL}/exam/submit`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId }),
+      });
+      const submitData = await submitRes.json();
+      if (submitData.success) {
+        setResult(submitData.score);
+        setStarted(false);
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      alert("Failed to submit exam. Please contact the exam administrator.");
+    } finally {
+      setLoading(false);
+    }
+  }, [sessionId]);
+
   // Timer effect: polls Electron get-time every second once exam starts
   useEffect(() => {
     if (!started) return;
@@ -50,7 +75,7 @@ function App() {
     }, 1000);
 
     return () => clearInterval(timerIntervalRef.current);
-  }, [started, sessionId]);
+  }, [started, handleSubmit]);
 
   const getCamera = async () => {
     try {
@@ -173,27 +198,6 @@ function App() {
     }
   };
 
-  const handleSubmit = async (isTimeout = false) => {
-    clearInterval(timerIntervalRef.current);
-    setLoading(true);
-    try {
-      const submitRes = await fetch(`${BASE_URL}/exam/submit`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sessionId }),
-      });
-      const submitData = await submitRes.json();
-      if (submitData.success) {
-        setResult(submitData.score);
-        setStarted(false);
-      }
-    } catch (err) {
-      console.error("Submission error:", err);
-      alert("Failed to submit exam. Please contact the exam administrator.");
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const currentQuestion = questions[currentQuestionIndex];
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
