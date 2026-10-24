@@ -1,4 +1,4 @@
-const { BrowserWindow, app, ipcMain } = require("electron");
+const { BrowserWindow, app, ipcMain, dialog } = require("electron");
 const path = require("path");
 
 let win = null;
@@ -31,6 +31,25 @@ ipcMain.handle("full-screen", () => {
     return true;
   }
   return false;
+});
+
+ipcMain.handle("show-rules-dialog", async () => {
+  if (!win) return false;
+  const result = await dialog.showMessageBox(win, {
+    type: "info",
+    title: "Exam Rules & Instructions",
+    message: "Exam Rules & Guidelines",
+    detail:
+      "1. Make sure your webcam remains on throughout the test.\n" +
+      "2. Stay in full-screen mode. Do not switch tabs or minimize the window.\n" +
+      "3. Do not leave your seat or look away from the screen for prolonged periods.\n" +
+      "4. No external help, electronic devices, or secondary monitors are permitted.\n" +
+      "5. Ensure a quiet, well-lit environment without background voices.",
+    buttons: ["I Agree & Start Test", "Cancel"],
+    defaultId: 0,
+    cancelId: 1,
+  });
+  return result.response === 0;
 });
 
 app.whenReady().then(() => {

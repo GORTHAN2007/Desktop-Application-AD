@@ -4,6 +4,8 @@ import "./App.css";
 function App() {
   const [cameraReady, setCameraReady] = useState(false);
   const [fullscreenReady, setFullscreenReady] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [examStarted, setExamStarted] = useState(false);
 
   const videoRef = useRef(null);
   const imageCaptureRef = useRef(null);
@@ -33,7 +35,6 @@ function App() {
       if (window.electronAPI?.setFullScreen) {
         await window.electronAPI.setFullScreen();
       } else {
-        // Fallback for browser testing
         if (!document.fullscreenElement) {
           await document.documentElement.requestFullscreen();
         }
@@ -41,6 +42,23 @@ function App() {
       setFullscreenReady(true);
     } catch (err) {
       console.error("Fullscreen error:", err);
+    }
+  };
+
+  const startExam = () => {
+    setExamStarted(true);
+    console.log("Exam started!");
+  };
+
+  const handleGoToTest = async () => {
+    if (window.electronAPI?.showRulesDialog) {
+      const agreed = await window.electronAPI.showRulesDialog();
+      if (agreed) {
+        startExam();
+      }
+    } else {
+      // Browser fallback modal
+      setShowModal(true);
     }
   };
 
@@ -139,6 +157,7 @@ function App() {
           <button
             type="button"
             className="btn-dark"
+            onClick={handleGoToTest}
             disabled={!cameraReady || !fullscreenReady}
           >
             Go To Test
@@ -146,6 +165,44 @@ function App() {
         </div>
         <div className="time-left">Time Left : HH:MM:SS</div>
       </div>
+
+      {/* React Fallback Modal */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>Exam Rules & Instructions</h2>
+              <p>Exam Rules & Guidelines</p>
+            </div>
+            <ol className="rules-list">
+              <li>Make sure your webcam remains on throughout the test.</li>
+              <li>Stay in full-screen mode. Do not switch tabs or minimize the window.</li>
+              <li>Do not leave your seat or look away from the screen for prolonged periods.</li>
+              <li>No external help, electronic devices, or secondary monitors are permitted.</li>
+              <li>Ensure a quiet, well-lit environment without background voices.</li>
+            </ol>
+            <div className="modal-actions">
+              <button
+                type="button"
+                className="btn-outline"
+                onClick={() => setShowModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="btn-dark"
+                onClick={() => {
+                  setShowModal(false);
+                  startExam();
+                }}
+              >
+                I Agree & Start Test
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
